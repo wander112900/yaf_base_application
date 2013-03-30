@@ -34,7 +34,7 @@ class Cache {
      */
     public static function driver($driver = null)
     {
-        if (is_null($driver)) $driver = \Yaf\Registry::get('cache.driver');
+        if (is_null($driver)) $driver = \Yaf\Application::app()->get('cache.driver');
 
         if ( ! isset(static::$drivers[$driver]))
         {
@@ -62,7 +62,7 @@ class Cache {
         switch ($driver)
         {
         case 'memcached':
-            return new Drivers\Memcached(Memcached::connection(), \Yaf\Registry::get('cache.key'));
+            return new Drivers\Memcached(Memcached::connection(), \Yaf\Application::app()->get('cache.key'));
         default:
             throw new \Exception("Cache driver {$driver} is not supported.");
         }

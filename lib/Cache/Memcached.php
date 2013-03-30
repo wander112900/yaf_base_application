@@ -26,7 +26,7 @@ class Memcached {
     {
         if (is_null(static::$connection))
         {
-            static::$connection = static::connect(\Yaf\Registry::get('cache.memcached'));
+            static::$connection = static::connect(\Yaf\Application::app()->get('cache.memcached'));
         }
 
         return static::$connection;
