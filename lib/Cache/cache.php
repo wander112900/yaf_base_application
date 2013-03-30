@@ -61,21 +61,8 @@ class Cache {
 
         switch ($driver)
         {
-        case 'apc':
-            return new Drivers\APC(Config::get('cache.key'));
-
-        case 'file':
-            return new Drivers\File(path('storage').'cache'.DS);
-
         case 'memcached':
-            return new Drivers\Memcached(Memcached::connection(), Config::get('cache.key'));
-
-        case 'memory':
-            return new Drivers\Memory;
-
-        case 'redis':
-            return new Drivers\Redis(Redis::db());
-
+            return new Drivers\Memcached(Memcached::connection(), \Yaf\Registry::get('cache.key'));
         default:
             throw new \Exception("Cache driver {$driver} is not supported.");
         }
