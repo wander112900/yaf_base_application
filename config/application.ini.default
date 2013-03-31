@@ -29,9 +29,8 @@ database.mysql.password=
 database.mysql.database=
 database.mysql.charset="utf8"
 ; Cache
-cache.driver=""
-cache.key=""
-cache.memcached.host=""
-cache.memcached.port=""
-cache.memcached.weigt=""
-
+cache.driver="memcached"
+cache.key="test"
+cache.memcached.s1.host="127.0.0.1"
+cache.memcached.s1.port="11211"
+cache.memcached.s1.weight="0"
