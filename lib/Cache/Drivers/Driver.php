@@ -27,7 +27,7 @@ abstract class Driver {
      */
     public function get($key, $default = null)
     {
-        return ( ! is_null($item = $this->retrieve($key))) ? $item : value($default);
+        return ( ! is_null($item = $this->retrieve($key))) ? $item : $this->value($default);
     }
 
     /**
@@ -74,7 +74,7 @@ abstract class Driver {
     {
         if ( ! is_null($item = $this->get($key, null))) return $item;
 
-        $this->$function($key, $default = value($default), $minutes);
+        $this->$function($key, $default = $this->value($default), $minutes);
 
         return $default;
     }
@@ -108,6 +108,10 @@ abstract class Driver {
     protected function expiration($minutes)
     {
         return time() + ($minutes * 60);
+    }
+
+    protected function value($value) {
+        return (is_callable($value) and ! is_string($value)) ? call_user_func($value) : $value;
     }
 
 }

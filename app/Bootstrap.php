@@ -7,6 +7,7 @@ use eYaf\Layout;
 
 class Bootstrap extends \Yaf\Bootstrap_Abstract
 {
+    protected $config;
 
     public function _initErrorHandler(Yaf\Dispatcher $dispatcher)
     {
@@ -21,6 +22,11 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract
     public function _initRequest(Yaf\Dispatcher $dispatcher)
     {
         $dispatcher->setRequest(new Request());
+    }
+
+    public function _initCache(Yaf\Dispatcher $dispatcher) {
+        $driver = $this->config->get('cache.driver');
+        Cache\Cache::driver($driver);
     }
 
     public function _initDatabase(Yaf\Dispatcher $dispatcher)

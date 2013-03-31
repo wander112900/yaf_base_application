@@ -77,6 +77,7 @@ class Memcached extends Sectionable {
     {
         if ($this->sectionable($key))
         {
+            var_dump($key);
             list($section, $key) = $this->parse($key);
 
             return $this->put_in_section($section, $key, $value, $minutes);
